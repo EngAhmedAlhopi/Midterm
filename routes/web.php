@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/my-tickets',[TicketController::class,'index'] )->name('index');
+
+Route::get('/new-ticket', function(){
+    return view('new_ticket');
+});
+
+Route::post('/new-ticket', [TicketController::class,'store'] )->name('store');
+
+
+
+Route::get('/show-ticket/{id}', [TicketController::class,'show'] )->name('show');
